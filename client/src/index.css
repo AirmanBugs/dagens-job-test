@@ -12,3 +12,19 @@ body {
   max-width: 800px;
   color: orangered;
 }
+
+form {
+  width: 18rem;
+  text-align: right;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
