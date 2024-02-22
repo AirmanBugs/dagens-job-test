@@ -1,8 +1,8 @@
-import express, { Response } from 'express'
+import express, { Response, Request } from 'express'
 import http from 'http';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import './db';
+import { products } from './db';
 
 const app = express();
 
@@ -17,6 +17,13 @@ http.createServer(app).listen(3001, () => {
 app.get('/', (_, res: Response) => {
   res.send({ status: 200 });
 });
+
+app.post('/products', (req: Request, res: Response) => {
+  console.log('Received:', req.body)
+  products.push(req.body)
+  console.log(products.slice(-10))
+  res.send('Got a POST request')
+})
 
 process.on('SIGINT', function () {
   process.exit();

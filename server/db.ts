@@ -1,4 +1,6 @@
-const products = [
+import { Product } from '../interface/types'
+
+export const products: Product[] = [
   {
     id: 'bec7ab80-83a2-46f4-8cce-a95e652b2ae5',
     name: 'chicken',
@@ -6000,5 +6002,3 @@ const products = [
     price: 781,
   },
 ];
-
-module.exports = products;
