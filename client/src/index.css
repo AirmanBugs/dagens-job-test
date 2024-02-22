@@ -4,9 +4,11 @@ body {
   font-family: 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #161748;
 }
 
 .app {
   margin: 0 auto;
   max-width: 800px;
+  color: orangered;
 }
