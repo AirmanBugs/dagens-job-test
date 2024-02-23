@@ -18,10 +18,12 @@ app.get('/', (_, res: Response) => {
   res.send({ status: 200 });
 });
 
-app.get('/products', (_, res: Response) => {
-  res.send({ 
-    status: 200, 
-    products
+app.get('/products/', (req, res: Response) => {
+  const category = req.query.category
+  const filteredProducts = category ? products.filter(p => p.category === category) : products
+  res.send({
+    status: 200,
+    filteredProducts
   })
 })
 
