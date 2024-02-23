@@ -5,6 +5,7 @@ import cors from 'cors';
 import { products } from './db';
 
 const app = express();
+const PageSize = 24
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,12 +19,16 @@ app.get('/', (_, res: Response) => {
   res.send({ status: 200 });
 });
 
-app.get('/products/', (req, res: Response) => {
+app.get('/products/:page', (req, res: Response) => {
   const category = req.query.category
   const filteredProducts = category ? products.filter(p => p.category === category) : products
+  const page = parseInt(req.params.page)
+  // TODO: Redirect if page is NaN, too low, or too high
+  const start = (page - 1) * PageSize
+  const end = page * PageSize
   res.send({
     status: 200,
-    filteredProducts
+    products: filteredProducts.slice(start, end)
   })
 })
 
