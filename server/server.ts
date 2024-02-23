@@ -6,6 +6,7 @@ import { products } from './db';
 
 const app = express();
 const PageSize = 24
+const N = 10
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,6 +36,24 @@ app.get('/products/:page', (req, res: Response) => {
   res.send({
     status: 200,
     products: filteredProducts.slice(start, end)
+  })
+})
+
+app.get('/products/nearestPrice/:id', (req: Request, res: Response) => {
+  const id = req.params.id
+  const price = products.find(p => p.id === id)?.price!!
+  console.log(products.find(p => p.id == id))
+  const productsWithDiffs = products.filter(product => product.id !== id)
+  .map(
+    product => ({...product, diff: Math.abs(price - product.price)})
+    )
+  const sortedByDiff = productsWithDiffs.sort((p0, p1) => p0.diff - p1.diff)
+  res.send({
+    status: 200,
+    products: sortedByDiff.slice(0, N).map(product => {
+      const { diff, ...rest } = product
+      return rest
+    })
   })
 })
 
