@@ -21,7 +21,13 @@ app.get('/', (_, res: Response) => {
 
 app.get('/products/:page', (req, res: Response) => {
   const category = req.query.category
-  const filteredProducts = category ? products.filter(p => p.category === category) : products
+  const maxPrice = typeof req.query.maxPrice === 'string' ? parseFloat(req.query.maxPrice) : Number.MAX_SAFE_INTEGER
+  const minPrice = typeof req.query.minPrice === 'string' ? parseFloat(req.query.minPrice) : 0
+  const filteredProducts = category || maxPrice < Number.MAX_SAFE_INTEGER || minPrice > 0 ? products.filter(
+    p => p.category === category &&
+    p.price < maxPrice &&
+    p.price > minPrice
+    ) : products
   const page = parseInt(req.params.page)
   // TODO: Redirect if page is NaN, too low, or too high
   const start = (page - 1) * PageSize
