@@ -1,6 +1,6 @@
 ## client
 
-### `npm install` 
+### `npm install`
 
 Install all dependencies.
 

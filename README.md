@@ -12,7 +12,6 @@ This repo contains the starter code for Dagens job test, as well as the task des
 
 - Adding too much abstraction, handling every possible error and adding validation for every input and endpoint won't give you any extra points.
 
-
 ### Tasks
 
 1. Users should be able to create products from a form page. The products should be appended to the database (see `server/db.js`).
@@ -24,7 +23,3 @@ This repo contains the starter code for Dagens job test, as well as the task des
 ### Delivery
 
 Clone the repo, solve the tasks and push your code to a public GitHub repo, Bitbucket repo, or similar. Send a link to the solution to Dagens.
-
-
-
-
