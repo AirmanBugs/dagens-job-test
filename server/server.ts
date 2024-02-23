@@ -18,6 +18,13 @@ app.get('/', (_, res: Response) => {
   res.send({ status: 200 });
 });
 
+app.get('/products', (_, res: Response) => {
+  res.send({ 
+    status: 200, 
+    products
+  })
+})
+
 app.post('/products', (req: Request, res: Response) => {
   console.log('Received:', req.body)
   products.push(req.body)
